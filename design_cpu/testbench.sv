@@ -39,3 +39,34 @@ module top;
   end
   
 endmodule
+
+
+/*module top;
+  
+  reg [15:0] Dividend;
+  reg [15:0] Divisor;
+  wire [15:0] Quotient;
+  wire [15:0] Remainder;
+  
+  divider dut(Dividend,Divisor,Quotient,Remainder);
+
+  
+  initial begin
+ //   $monitor("%d / %d = %d",a,b,c);
+    #1;
+    Dividend = 11;
+    Divisor = 2;
+    #1
+    $display("%d, %d",Quotient,Remainder);
+    #10;
+    $finish;
+  end
+  
+    
+  initial begin
+     $dumpfile("abc.vcd");
+    $dumpvars(0);
+  end
+endmodule
+  
+*/

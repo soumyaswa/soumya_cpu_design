@@ -1,3 +1,15 @@
+module add(rs1, rs2, add_rd,co);
+  parameter N = 16;
+  input [N-1:0] rs1, rs2;
+  output reg [N-1:0] add_rd;
+  output reg [N-1:0] co;
+
+  always@(*) begin
+    add_rd = rs1 + rs2;
+    co = (rs1 + rs2) >> N;
+  end
+endmodule
+
 /*module add(rs1, rs2, add_rd,co);
   parameter N=16;
   input [N-1:0] rs1, rs2;
@@ -13,7 +25,7 @@
    end
    endgenerate
 endmodule*/
-module add(rs1, rs2, rd);
+/*module add(rs1, rs2, rd);
   input [15:0] rs1, rs2;  //rs1,rs2 are 16 bit values
   output reg [15:0] rd;   //rd is 16 bit value
 
@@ -28,4 +40,4 @@ result = operand1 + operand2;
   carry_out = (result > 16'hffff);   //checks if the value stored in the "result" register is greater than the maximum value that can be represented in 16 bits.
 rd = result[15:0];
 end
-endmodule
+endmodule*/
