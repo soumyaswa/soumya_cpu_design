@@ -4,7 +4,7 @@
 `include "sub.sv"
 module top;
   reg [15:0]rs1,rs2;
-  wire [15:0]rd,add_rd,co;
+  wire [15:0]rd,add_rd,co,mul_rd;
   
   reg [3:0]a,b;
   wire [7:0] p;
@@ -14,7 +14,7 @@ module top;
 
   //add add_dut(rs1,rs2,add_rd,co);
   //sub sub_dut(rs1,rs2,rd); 
-  //mul mul_dut(rs1,rs2,rd);
+  //mul mul_dut(rs1,rs2,mul_rd);
   //div div_dut(rs1, rs2, rd1,rd2);
  // div div_dut(rs1, rs2, rd);
   initial begin
