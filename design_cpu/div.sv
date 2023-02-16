@@ -1,5 +1,69 @@
+//div using comparator
+module comparator #(parameter N=16) (
+input [N-1:0] rs1,
+input [N-1:0] rs2,
+output wire greater,
+output wire equal,
+output wire less
+);
+assign greater = (rs1 > rs2);
+assign equal = (rs1 == rs2);
+assign less = (rs1 < rs2);
+endmodule
+
+// Division module
+module division #(parameter N=16) (
+input [N-1:0] dividend,
+input [N-1:0] divisor,
+output [N-1:0] quotient,
+output [N-1:0] remainder
+);
+reg [N-1:0] current_dividend;
+reg [N-1:0] current_quotient;
+integer i;
+
+// Initialize current_dividend and current_quotient
+always @(*) begin
+current_dividend = dividend;
+current_quotient = 0;
+end
+
+// Loop through each bit of the dividend
+always @(*) begin
+for (i=N-1; i>=0; i=i-1) begin
+// Shift current_dividend and current_quotient left-----------//the "always" block is triggered whenever any of its inputs change. The "for" loop loops through each bit of the "dividend" array, starting from the most significant bit (index N-1) and going down to the least significant bit (index 0).Within the loop, the "current_dividend" and "current_quotient" arrays are shifted left by one bit using concatenation. The most significant bit of each array is discarded, and a zero is inserted at the least significant bit. This has the effect of multiplying each array by two.
+
+  current_dividend = {current_dividend[N-1], current_dividend[N-2:0]};
+  current_quotient = {current_quotient[N-1], current_quotient[N-2:0]};
+// /After the arrays are shifted, a "comparator" module is instantiated with the "current_dividend" and "divisor" arrays as inputs. The "greater", "equal", and "less" outputs of the "comparator" module .
+  
+  comparator #(N) comp1(
+	     	.rs1(current_dividend),
+		.rs2(divisor),
+		.greater(current_dividend >= divisor),
+		.equal(current_dividend == divisor),
+    		.less(current_dividend <= divisor)
+);
+  
+  
+// Increment current_quotient if current_dividend >= divisor  ---//If the "current_dividend" is greater than or equal to the "divisor", the "current_dividend" is subtracted by the "divisor", and the least significant bit of the "current_quotient" is set to 1. This has the effect of subtracting the "divisor" from the "current_dividend" as many times as possible and accumulating the number of times it was subtracted in the "current_quotient".
+if (current_dividend >= divisor) begin
+current_dividend = current_dividend - divisor;
+current_quotient[0] = 1;
+end
+end
+end
+
+assign quotient = current_quotient;
+assign remainder = current_dividend;
+endmodule
+
+
+
+
+
 //refering with nitin's mul code
-module full_subtractor #(parameter N=16)
+/*module full_subtractor #(parameter N=16)
   (
     input [N-1:0] A,
     input [N-1:0] B,
@@ -48,7 +112,7 @@ module divider#(parameter N=16)(
 
   assign Remainder = temp_remainder;
   
-endmodule
+endmodule*/
 
 //NOTE:-The temp_remainder wire keeps track of the intermediate result and Quotient wire keeps track of the quotient bits. The division is performed by shifting the intermediate result and subtracting the divisor until the remainder is less than the divisor. The corresponding quotient bit is then set to 1, and the process repeats until all the bits are processed. The final result, the Remainder, is assigned to the temp_remainder wire.
 

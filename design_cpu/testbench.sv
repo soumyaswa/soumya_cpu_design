@@ -4,17 +4,19 @@
 `include "sub.sv"
 module top;
   reg [15:0]rs1,rs2;
-  wire [15:0]rd,add_rd,co,mul_rd;
+  wire [15:0]rd,add_rd,co;
   
   reg [3:0]a,b;
   wire [7:0] p;
-
+  
+  bit [15:0] greater,equal,less; 
+  division dut(rs1,rs2,greater,equal,less); 
   
   //multiplier_4x4 mul_dut(a,b,p);
 
   //add add_dut(rs1,rs2,add_rd,co);
   //sub sub_dut(rs1,rs2,rd); 
-  //mul mul_dut(rs1,rs2,mul_rd);
+  //mul mul_dut(rs1,rs2,rd);
   //div div_dut(rs1, rs2, rd1,rd2);
  // div div_dut(rs1, rs2, rd);
   initial begin
@@ -22,7 +24,8 @@ module top;
       rs1=12;
       rs2=2;
       #1;
-      $display("rs1=%d, rs2=%d, rd=%d", rs1,rs2,rd); 
+      $display("rs1=%d, rs2=%d, greater=%d, equal=%d ,less=%d", rs1,rs2,greater,equal,less); 
+     // $display("rs1=%d, rs2=%d, rd=%d", rs1,rs2,rd); 
     //  $display("division output: rs1=%d, rs2=%d, rd1=%d, rd2=%d", rs1,rs2,rd1,rd2); 
       
       /*a=12;
@@ -40,33 +43,3 @@ module top;
   
 endmodule
 
-
-/*module top;
-  
-  reg [15:0] Dividend;
-  reg [15:0] Divisor;
-  wire [15:0] Quotient;
-  wire [15:0] Remainder;
-  
-  divider dut(Dividend,Divisor,Quotient,Remainder);
-
-  
-  initial begin
- //   $monitor("%d / %d = %d",a,b,c);
-    #1;
-    Dividend = 11;
-    Divisor = 2;
-    #1
-    $display("%d, %d",Quotient,Remainder);
-    #10;
-    $finish;
-  end
-  
-    
-  initial begin
-     $dumpfile("abc.vcd");
-    $dumpvars(0);
-  end
-endmodule
-  
-*/
