@@ -90,7 +90,7 @@ module divider#(parameter N=16)(
   wire [N-1:0] current_dividend;
   wire Quotient_bit;
   
-  initial begin
+ always @(*) begin 
     temp_remainder = Dividend;
     Quotient = 0;
   end
