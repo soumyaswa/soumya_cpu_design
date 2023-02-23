@@ -68,9 +68,9 @@ module mul #(parameter N=16)
   );
   
   // Temporary arrays to store intermediate values
-  wire [N][N-1:0] temp1;
-  wire [N][2*N-1:0] temp2;
-  wire [N][2*N-1:0] temp3;
+  wire [N-1:0][N-1:0] temp1;
+  wire [N-1:0][2*N-1:0] temp2;
+  wire [N-1:0][2*N-1:0] temp3;
   
   // Initialize the first bit of the intermediate values
   assign temp1[0] = (rs2[0]) ? rs1 : 0;

@@ -1,2 +1,2 @@
 vlog testbench.sv
-vsim -c top -do "run -all; exit"
+vsim -c  divider_fsm_tb -do "run -all; exit"

@@ -1,148 +1,215 @@
-//div using comparator
-module comparator #(parameter N=16) (
-input [N-1:0] rs1,
-input [N-1:0] rs2,
-output wire greater,
-output wire equal,
-output wire less
+
+module divider_fsm #(parameter N=16) (
+  input clk,
+  input reset,bin,
+  input unsigned [N-1:0] dividend,
+  input unsigned [N-1:0] divisor,
+  output reg [N-1:0] quotient,
+  output reg [N-1:0] remainder,
+    output reg done
 );
-assign greater = (rs1 > rs2);
-assign equal = (rs1 == rs2);
-assign less = (rs1 < rs2);
+  //wire [15:0] quotient;
+  //wire [15:0] remainder;
+// Define states for the FSM
+typedef enum logic [2:0] {
+    INIT,
+    COMPARE,
+    SUBTRACT,
+    OUTPUT
+} fsm_state_t;
+
+// Define signals for the FSM
+  reg signed [15:0] current_dividend;
+  reg signed [15:0] current_quotient;
+reg [2:0] state;
+ 
+
+// Instantiate the comparator module
+  comp_16_bit #(N) comparator_inst(
+    .inp1(current_dividend),
+    .inp2(divisor),
+    .comp(comp_lt)
+   
+);
+
+// Instantiate the subtractor module
+  subt #(N) subtractor_inst(
+    .inp1(current_dividend),
+    .inp2(divisor),
+    .bin(bin),
+    .out(next_dividend),
+    .bo()
+);
+
+// Initialize the signals and state
+initial begin
+    current_dividend = dividend;
+    current_quotient = 0;
+    state = INIT;
+end
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        current_dividend <= dividend;
+        current_quotient <= 0;
+        state <= INIT;
+        done <= 0;
+    end
+    else begin
+        case (state)
+            INIT: begin
+                // Move to the COMPARE state
+                state <= COMPARE;
+            end
+            COMPARE: begin
+                // Compare the current_dividend and divisor using the comparator module
+                if (comp_lt) begin
+                    // Move to the OUTPUT state if the current_dividend is less than the divisor
+                    state <= OUTPUT;
+                end
+                else begin
+                    // Move to the SUBTRACT state with a delay
+                    state <= SUBTRACT;
+                end
+            end
+            SUBTRACT: begin
+                // Subtract the divisor from the current_dividend using the subtractor module
+                current_dividend <= next_dividend;
+                current_quotient <= current_quotient + 1;
+                // Move back to the COMPARE state with a delay
+                #1;
+                state <= COMPARE;
+            end
+            OUTPUT: begin
+                // Output the quotient and remainder
+                quotient <= current_quotient;
+                remainder <= current_dividend;
+                done <= 1;
+                // Move back to the INIT state
+                state <= INIT;
+            end
+            default: begin
+                state <= INIT;
+            end
+        endcase
+    end
+end
+
 endmodule
 
-// Division module
-module division #(parameter N=16) (
-input [N-1:0] dividend,
-input [N-1:0] divisor,
-output [N-1:0] quotient,
-output [N-1:0] remainder
-);
-reg [N-1:0] current_dividend;
-reg [N-1:0] current_quotient;
-integer i;
 
-// Initialize current_dividend and current_quotient
-always @(*) begin
-current_dividend = dividend;
-current_quotient = 0;
-end
-
-// Loop through each bit of the dividend
-always @(*) begin
-for (i=N-1; i>=0; i=i-1) begin
-// Shift current_dividend and current_quotient left-----------//the "always" block is triggered whenever any of its inputs change. The "for" loop loops through each bit of the "dividend" array, starting from the most significant bit (index N-1) and going down to the least significant bit (index 0).Within the loop, the "current_dividend" and "current_quotient" arrays are shifted left by one bit using concatenation. The most significant bit of each array is discarded, and a zero is inserted at the least significant bit. This has the effect of multiplying each array by two.
-
-  current_dividend = {current_dividend[N-1], current_dividend[N-2:0]};
-  current_quotient = {current_quotient[N-1], current_quotient[N-2:0]};
-// /After the arrays are shifted, a "comparator" module is instantiated with the "current_dividend" and "divisor" arrays as inputs. The "greater", "equal", and "less" outputs of the "comparator" module .
+//---------------comp logic ---------------------
+module comp_16_bit #(parameter N=16) (inp1,inp2,comp);
+  input [15:0]inp1,inp2;
+  output reg comp;
+  wire t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12;
+  wire y1,y2,y3,y4,y5,y6,a_less,a_greater,equal;
+  wire [1:0]op1;
+  comp_4_bit c1(.inp1(inp1[3:0]),.inp2(inp2[3:0]),.a_less(t1),.a_greater(t2),.equal(t3));
+  comp_4_bit c2(.inp1(inp1[7:4]),.inp2(inp2[7:4]),.a_less(t4),.a_greater(t5),.equal(t6));
+  comp_4_bit c3(.inp1(inp1[11:8]),.inp2(inp2[11:8]),.a_less(t7),.a_greater(t8),.equal(t9));
+  comp_4_bit c4(.inp1(inp1[15:12]),.inp2(inp2[15:12]),.a_less(t10),.a_greater(t11),.equal(t12));
   
-  comparator #(N) comp1(
-	     	.rs1(current_dividend),
-		.rs2(divisor),
-		.greater(current_dividend >= divisor),
-		.equal(current_dividend == divisor),
-    		.less(current_dividend <= divisor)
-);
-  
-  
-// Increment current_quotient if current_dividend >= divisor  ---//If the "current_dividend" is greater than or equal to the "divisor", the "current_dividend" is subtracted by the "divisor", and the least significant bit of the "current_quotient" is set to 1. This has the effect of subtracting the "divisor" from the "current_dividend" as many times as possible and accumulating the number of times it was subtracted in the "current_quotient".
-if (current_dividend >= divisor) begin
-current_dividend = current_dividend - divisor;
-current_quotient[0] = 1;
-end
-end
-end
-
-assign quotient = current_quotient;
-assign remainder = current_dividend;
-endmodule
-
-
-
-
-
-//refering with nitin's mul code
-/*module full_subtractor #(parameter N=16)
-  (
-    input [N-1:0] A,
-    input [N-1:0] B,
-    output [N-1:0] Diff,
-    output Borrow
-  );
-  
-  wire [N-1:0] temp;
-  
-  assign temp = A - B;
-  assign Diff = temp;
-  assign Borrow = (A < B);
-  
-endmodule
-
-module divider#(parameter N=16)( 
-  input [N-1:0] Dividend,
-  input [N-1:0] Divisor,
-  output [N-1:0] Quotient,
-  output [N-1:0] Remainder
-);
-  
-  wire [N-1:0] temp_remainder;
-  wire [N-1:0] current_dividend;
-  wire Quotient_bit;
-  
- always @(*) begin 
-    temp_remainder = Dividend;
-    Quotient = 0;
+ 
+  and b1(y1,t2,t6,t9,t12);
+  and b2(y2,t1,t6,t9,t12); 
+  and b3(y3,t5,t9,t12);
+  and b4(y4,t4,t9,t12);
+  and b5(y5,t8,t12); 
+  and b6(y6,t7,t12);
+  and b7(equal,t3,t6,t9,t12); 
+  or b8(a_greater,y1,y3,y5,t11);
+  or b9(a_less,y2,y4,y6,t10);
+  assign op1={a_less,a_greater};
+  always@(op1)begin
+    case(op1)
+      2'b00: begin
+        comp = a_less;
+        $display("inp1<inp2");
+      end
+        
+      2'b01 : begin
+        comp = a_greater;
+        $display("inp1>inp2");
+      end
+      
+    endcase
   end
   
+endmodule
+
+
+
+module comp_4_bit(inp1,inp2,a_less,a_greater,equal);
+  input [3:0]inp1,inp2;
+  output reg a_less,a_greater,equal;
+  wire t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12;
+  wire y1,y2,y3,y4,y5,y6;
+  
+  comp c1(.inp1(inp1[0]),.inp2(inp2[0]),.a_less(t1),.a_greater(t2),.equal(t3));
+  comp c2(.inp1(inp1[1]),.inp2(inp2[1]),.a_less(t4),.a_greater(t5),.equal(t6));
+  comp c3(.inp1(inp1[2]),.inp2(inp2[2]),.a_less(t7),.a_greater(t8),.equal(t9));
+  comp c4(.inp1(inp1[3]),.inp2(inp2[3]),.a_less(t10),.a_greater(t11),.equal(t12));
+  
+ 
+  and b1(y1,t2,t6,t9,t12);
+  and b2(y2,t1,t6,t9,t12); 
+  and b3(y3,t5,t9,t12); 
+  and b4(y4,t4,t9,t12);
+  and b5(y5,t8,t12);
+  and b6(y6,t7,t12);
+  
+  and b7(equal,t3,t6,t9,t12); 
+  or b8(a_greater,y1,y3,y5,t11);
+  or b9(a_less,y2,y4,y6,t10);
+  
+endmodule
+
+//1-bit comp
+module comp(inp1,inp2,a_less,a_greater,equal);
+
+  input inp1,inp2;
+  output reg a_less,a_greater,equal;
+  wire t1,t2;
+  
+  not n1(t1,inp2);
+  and a1(a_greater,t1,inp1);
+  xnor x1(equal,inp1,inp2);
+  not n2(t2,inp1);
+  and a2(a_less,t2,inp2);
+endmodule
+ 
+
+///----------------------sub logic--------------------
+module subt #(parameter N=16) (inp1,inp2,bin,out,bo);
+  input [N-1:0]inp1,inp2;
+  input bin;
+  output reg [N-1:0]out;
+  output reg bo;
+  wire [N:0]b;
   genvar i;
-  
   generate
-    for(i=N-1; i>=0; i=i-1)begin
-      current_dividend = {temp_remainder[N-1:i], Quotient[i-1:0]};  //The result of the concatenation operation is a new N-bit value current_dividend with the higher N-i bits taken from temp_remainder and the lower i bits taken from Quotient. 
-      full_subtractor#(N) fs(
-        .A(current_dividend),
-        .B(Divisor),
-        .Diff(temp_remainder),
-        .Borrow(Quotient_bit)
-      );
-      assign Quotient[i] = Quotient_bit;
+    assign b[0]=bin;
+    for(i=0; i<=N-1; i++)begin
+      fullsubtractor f0(.inp1(inp1[i]),.inp2(inp2[i]),.bin(b[i]),.out(out[i]),.bo(b[i+1]));
+      
     end
+   // assign bo=b[N];
   endgenerate
+  assign bo=b[N];
+endmodule
+//full subtractor
 
-  assign Remainder = temp_remainder;
-  
-endmodule*/
-
-//NOTE:-The temp_remainder wire keeps track of the intermediate result and Quotient wire keeps track of the quotient bits. The division is performed by shifting the intermediate result and subtracting the divisor until the remainder is less than the divisor. The corresponding quotient bit is then set to 1, and the process repeats until all the bits are processed. The final result, the Remainder, is assigned to the temp_remainder wire.
-
-
-
-
-
-/*module div(rs1, rs2, rd1,rd2); //This is a Verilog module that implements integer division of two 16-bit input operands rs1_val and rs2_val and produces a 16-bit output rd_val.
-  input [15:0] rs1, rs2;
-  output [15:0] rd1,rd2;
-   reg [15:0] rd1,rd2;
-   reg [31:0] dividend, divisor;
-   reg [15:0] quotient, remainder;
-integer i;
-
-always @(*) begin
-dividend = rs1;
-divisor = rs2;
-quotient = 0;
-remainder = 0;
-
-  for (i = 31; i >= 0; i = i - 1) begin  ///loop is executed 31 times (once for each bit position of the 32-bit dividend and quotient). 
-    remainder = (remainder << 1) + (dividend[i] & 1); //In each iteration, the remainder is shifted left by 1 bit and the least significant bit of dividend is added to it.
-    quotient[i] = (remainder >= divisor); //If the remainder is greater than or equal to divisor, the corresponding bit of the quotient is set to 1 and the remainder is decremented by divisor.
-  if (quotient[i])
-    remainder = remainder - divisor;
-end
-
-rd1 = quotient;
-rd2 = remainder;
-  
-end
-endmodule*/
+module fullsubtractor(inp1,inp2,bin,out,bo);
+  input inp1,inp2,bin;
+  output reg out,bo;
+  wire b,b1,out1;
+  Half_Subtractor h1(.inp1(inp1),.inp2(inp2),.bo(b),.out(out1));
+  Half_Subtractor h2(.inp1(sub1),.inp2(bin),.bo(b1),.out(out));
+  or last(bo,b1,b);
+endmodule
+//half subtarctor
+module Half_Subtractor(input inp1, inp2,output reg out, bo);
+assign out = inp1 ^ inp2;
+assign bo = ~inp1 & inp2;
+endmodule
