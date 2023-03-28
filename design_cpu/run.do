@@ -1,2 +1,2 @@
-vlog testbench.sv
-vsim -c  divider_fsm_tb -do "run -all; exit"
+vlog new_dv_tb.sv
+vsim -c  top -do "run -all; exit"

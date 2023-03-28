@@ -1,0 +1,238 @@
+# vsim -c top -do "run -all; exit" 
+# Start time: 13:12:02 on Mar 09,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: new_dv_tb.sv(14): (vopt-2685) [TFMPC] - Too few port connections for 'Div'.  Expected 9, found 8.
+# ** Warning: new_dv_tb.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'exception'.
+# //  Questa Sim-64
+# //  Version 10.7d linux_x86_64 Feb 15 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.top(fast)
+# run -all
+# 0,     0
+#                    35ns dispaly 1: Counter=    1, D=  600 
+#                    45ns dispaly 2: Counter =    2, RefCounter=    0 ,D=    0, refD=  600 
+#                    55ns dispaly 1: Counter=    1, D=64938 
+#                    65ns dispaly 2: Counter =    2, RefCounter=    2 ,D=    0, refD=64938 
+#                    75ns dispaly 1: Counter=    1, D=63740 
+#                    85ns dispaly 2: Counter =    2, RefCounter=    4 ,D=    0, refD=63740 
+#                    95ns dispaly 1: Counter=    1, D=62542 
+#                   105ns dispaly 2: Counter =    2, RefCounter=    6 ,D=    0, refD=62542 
+#                   115ns dispaly 1: Counter=    1, D=61344 
+#                   125ns dispaly 2: Counter =    2, RefCounter=    8 ,D=    0, refD=61344 
+#                   135ns dispaly 1: Counter=    1, D=60146 
+#                   145ns dispaly 2: Counter =    2, RefCounter=   10 ,D=    0, refD=60146 
+#                   155ns dispaly 1: Counter=    1, D=58948 
+#                   165ns dispaly 2: Counter =    2, RefCounter=   12 ,D=    0, refD=58948 
+#                   175ns dispaly 1: Counter=    1, D=57750 
+#                   185ns dispaly 2: Counter =    2, RefCounter=   14 ,D=    0, refD=57750 
+#                   195ns dispaly 1: Counter=    1, D=56552 
+#                   205ns dispaly 2: Counter =    2, RefCounter=   16 ,D=    0, refD=56552 
+#                   215ns dispaly 1: Counter=    1, D=55354 
+#                   225ns dispaly 2: Counter =    2, RefCounter=   18 ,D=    0, refD=55354 
+#                   235ns dispaly 1: Counter=    1, D=54156 
+#                   245ns dispaly 2: Counter =    2, RefCounter=   20 ,D=    0, refD=54156 
+#                   255ns dispaly 1: Counter=    1, D=52958 
+#                   265ns dispaly 2: Counter =    2, RefCounter=   22 ,D=    0, refD=52958 
+#                   275ns dispaly 1: Counter=    1, D=51760 
+#                   285ns dispaly 2: Counter =    2, RefCounter=   24 ,D=    0, refD=51760 
+#                   295ns dispaly 1: Counter=    1, D=50562 
+#                   305ns dispaly 2: Counter =    2, RefCounter=   26 ,D=    0, refD=50562 
+#                   315ns dispaly 1: Counter=    1, D=49364 
+#                   325ns dispaly 2: Counter =    2, RefCounter=   28 ,D=    0, refD=49364 
+#                   335ns dispaly 1: Counter=    1, D=48166 
+#                   345ns dispaly 2: Counter =    2, RefCounter=   30 ,D=    0, refD=48166 
+#                   355ns dispaly 1: Counter=    1, D=46968 
+#                   365ns dispaly 2: Counter =    2, RefCounter=   32 ,D=    0, refD=46968 
+#                   375ns dispaly 1: Counter=    1, D=45770 
+#                   385ns dispaly 2: Counter =    2, RefCounter=   34 ,D=    0, refD=45770 
+#                   395ns dispaly 1: Counter=    1, D=44572 
+#                   405ns dispaly 2: Counter =    2, RefCounter=   36 ,D=    0, refD=44572 
+#                   415ns dispaly 1: Counter=    1, D=43374 
+#                   425ns dispaly 2: Counter =    2, RefCounter=   38 ,D=    0, refD=43374 
+#                   435ns dispaly 1: Counter=    1, D=42176 
+#                   445ns dispaly 2: Counter =    2, RefCounter=   40 ,D=    0, refD=42176 
+#                   455ns dispaly 1: Counter=    1, D=40978 
+#                   465ns dispaly 2: Counter =    2, RefCounter=   42 ,D=    0, refD=40978 
+#                   475ns dispaly 1: Counter=    1, D=39780 
+#                   485ns dispaly 2: Counter =    2, RefCounter=   44 ,D=    0, refD=39780 
+#                   495ns dispaly 1: Counter=    1, D=38582 
+#                   505ns dispaly 2: Counter =    2, RefCounter=   46 ,D=    0, refD=38582 
+#                   515ns dispaly 1: Counter=    1, D=37384 
+#                   525ns dispaly 2: Counter =    2, RefCounter=   48 ,D=    0, refD=37384 
+#                   535ns dispaly 1: Counter=    1, D=36186 
+#                   545ns dispaly 2: Counter =    2, RefCounter=   50 ,D=    0, refD=36186 
+#                   555ns dispaly 1: Counter=    1, D=34988 
+#                   565ns dispaly 2: Counter =    2, RefCounter=   52 ,D=    0, refD=34988 
+#                   575ns dispaly 1: Counter=    1, D=33790 
+#                   585ns dispaly 2: Counter =    2, RefCounter=   54 ,D=    0, refD=33790 
+#                   595ns dispaly 1: Counter=    1, D=32592 
+#                   605ns dispaly 2: Counter =    2, RefCounter=   56 ,D=    0, refD=32592 
+#                   615ns dispaly 1: Counter=    1, D=31394 
+#                   625ns dispaly 2: Counter =    2, RefCounter=   58 ,D=    0, refD=31394 
+#                   635ns dispaly 1: Counter=    1, D=30196 
+#                   645ns dispaly 2: Counter =    2, RefCounter=   60 ,D=    0, refD=30196 
+#                   655ns dispaly 1: Counter=    1, D=28998 
+#                   665ns dispaly 2: Counter =    2, RefCounter=   62 ,D=    0, refD=28998 
+#                   675ns dispaly 1: Counter=    1, D=27800 
+#                   685ns dispaly 2: Counter =    2, RefCounter=   64 ,D=    0, refD=27800 
+#                   695ns dispaly 1: Counter=    1, D=26602 
+#                   705ns dispaly 2: Counter =    2, RefCounter=   66 ,D=    0, refD=26602 
+#                   715ns dispaly 1: Counter=    1, D=25404 
+#                   725ns dispaly 2: Counter =    2, RefCounter=   68 ,D=    0, refD=25404 
+#                   735ns dispaly 1: Counter=    1, D=24206 
+#                   745ns dispaly 2: Counter =    2, RefCounter=   70 ,D=    0, refD=24206 
+#                   755ns dispaly 1: Counter=    1, D=23008 
+#                   765ns dispaly 2: Counter =    2, RefCounter=   72 ,D=    0, refD=23008 
+#                   775ns dispaly 1: Counter=    1, D=21810 
+#                   785ns dispaly 2: Counter =    2, RefCounter=   74 ,D=    0, refD=21810 
+#                   795ns dispaly 1: Counter=    1, D=20612 
+#                   805ns dispaly 2: Counter =    2, RefCounter=   76 ,D=    0, refD=20612 
+#                   815ns dispaly 1: Counter=    1, D=19414 
+#                   825ns dispaly 2: Counter =    2, RefCounter=   78 ,D=    0, refD=19414 
+#                   835ns dispaly 1: Counter=    1, D=18216 
+#                   845ns dispaly 2: Counter =    2, RefCounter=   80 ,D=    0, refD=18216 
+#                   855ns dispaly 1: Counter=    1, D=17018 
+#                   865ns dispaly 2: Counter =    2, RefCounter=   82 ,D=    0, refD=17018 
+#                   875ns dispaly 1: Counter=    1, D=15820 
+#                   885ns dispaly 2: Counter =    2, RefCounter=   84 ,D=    0, refD=15820 
+#                   895ns dispaly 1: Counter=    1, D=14622 
+#                   905ns dispaly 2: Counter =    2, RefCounter=   86 ,D=    0, refD=14622 
+#                   915ns dispaly 1: Counter=    1, D=13424 
+#                   925ns dispaly 2: Counter =    2, RefCounter=   88 ,D=    0, refD=13424 
+#                   935ns dispaly 1: Counter=    1, D=12226 
+#                   945ns dispaly 2: Counter =    2, RefCounter=   90 ,D=    0, refD=12226 
+#                   955ns dispaly 1: Counter=    1, D=11028 
+#                   965ns dispaly 2: Counter =    2, RefCounter=   92 ,D=    0, refD=11028 
+#                   975ns dispaly 1: Counter=    1, D= 9830 
+#                   985ns dispaly 2: Counter =    2, RefCounter=   94 ,D=    0, refD= 9830 
+#                   995ns dispaly 1: Counter=    1, D= 8632 
+#                  1005ns dispaly 2: Counter =    2, RefCounter=   96 ,D=    0, refD= 8632 
+#                  1015ns dispaly 1: Counter=    1, D= 7434 
+#                  1025ns dispaly 2: Counter =    2, RefCounter=   98 ,D=    0, refD= 7434 
+#                  1035ns dispaly 1: Counter=    1, D= 6236 
+#                  1045ns dispaly 2: Counter =    2, RefCounter=  100 ,D=    0, refD= 6236 
+#                  1055ns dispaly 1: Counter=    1, D= 5038 
+#                  1065ns dispaly 2: Counter =    2, RefCounter=  102 ,D=    0, refD= 5038 
+#                  1075ns dispaly 1: Counter=    1, D= 3840 
+#                  1085ns dispaly 2: Counter =    2, RefCounter=  104 ,D=    0, refD= 3840 
+#                  1095ns dispaly 1: Counter=    1, D= 2642 
+#                  1105ns dispaly 2: Counter =    2, RefCounter=  106 ,D=    0, refD= 2642 
+#                  1115ns dispaly 1: Counter=    1, D= 1444 
+#                  1125ns dispaly 2: Counter =    2, RefCounter=  108 ,D=    0, refD= 1444 
+# 1135.000000ns:   600/  599 =   110
+# 1135ns: D=600,d=599,Q=110,R=0
+# 1,   110
+#                  1155ns dispaly 1: Counter=    1, D=  600 
+#                  1165ns dispaly 2: Counter =    2, RefCounter=  110 ,D=    0, refD=  600 
+#                  1175ns dispaly 1: Counter=    1, D=64938 
+#                  1185ns dispaly 2: Counter =    2, RefCounter=  112 ,D=    0, refD=64938 
+#                  1195ns dispaly 1: Counter=    1, D=63740 
+#                  1205ns dispaly 2: Counter =    2, RefCounter=  114 ,D=    0, refD=63740 
+#                  1215ns dispaly 1: Counter=    1, D=62542 
+#                  1225ns dispaly 2: Counter =    2, RefCounter=  116 ,D=    0, refD=62542 
+#                  1235ns dispaly 1: Counter=    1, D=61344 
+#                  1245ns dispaly 2: Counter =    2, RefCounter=  118 ,D=    0, refD=61344 
+#                  1255ns dispaly 1: Counter=    1, D=60146 
+#                  1265ns dispaly 2: Counter =    2, RefCounter=  120 ,D=    0, refD=60146 
+#                  1275ns dispaly 1: Counter=    1, D=58948 
+#                  1285ns dispaly 2: Counter =    2, RefCounter=  122 ,D=    0, refD=58948 
+#                  1295ns dispaly 1: Counter=    1, D=57750 
+#                  1305ns dispaly 2: Counter =    2, RefCounter=  124 ,D=    0, refD=57750 
+#                  1315ns dispaly 1: Counter=    1, D=56552 
+#                  1325ns dispaly 2: Counter =    2, RefCounter=  126 ,D=    0, refD=56552 
+#                  1335ns dispaly 1: Counter=    1, D=55354 
+#                  1345ns dispaly 2: Counter =    2, RefCounter=  128 ,D=    0, refD=55354 
+#                  1355ns dispaly 1: Counter=    1, D=54156 
+#                  1365ns dispaly 2: Counter =    2, RefCounter=  130 ,D=    0, refD=54156 
+#                  1375ns dispaly 1: Counter=    1, D=52958 
+#                  1385ns dispaly 2: Counter =    2, RefCounter=  132 ,D=    0, refD=52958 
+#                  1395ns dispaly 1: Counter=    1, D=51760 
+#                  1405ns dispaly 2: Counter =    2, RefCounter=  134 ,D=    0, refD=51760 
+#                  1415ns dispaly 1: Counter=    1, D=50562 
+#                  1425ns dispaly 2: Counter =    2, RefCounter=  136 ,D=    0, refD=50562 
+#                  1435ns dispaly 1: Counter=    1, D=49364 
+#                  1445ns dispaly 2: Counter =    2, RefCounter=  138 ,D=    0, refD=49364 
+#                  1455ns dispaly 1: Counter=    1, D=48166 
+#                  1465ns dispaly 2: Counter =    2, RefCounter=  140 ,D=    0, refD=48166 
+#                  1475ns dispaly 1: Counter=    1, D=46968 
+#                  1485ns dispaly 2: Counter =    2, RefCounter=  142 ,D=    0, refD=46968 
+#                  1495ns dispaly 1: Counter=    1, D=45770 
+#                  1505ns dispaly 2: Counter =    2, RefCounter=  144 ,D=    0, refD=45770 
+#                  1515ns dispaly 1: Counter=    1, D=44572 
+#                  1525ns dispaly 2: Counter =    2, RefCounter=  146 ,D=    0, refD=44572 
+#                  1535ns dispaly 1: Counter=    1, D=43374 
+#                  1545ns dispaly 2: Counter =    2, RefCounter=  148 ,D=    0, refD=43374 
+#                  1555ns dispaly 1: Counter=    1, D=42176 
+#                  1565ns dispaly 2: Counter =    2, RefCounter=  150 ,D=    0, refD=42176 
+#                  1575ns dispaly 1: Counter=    1, D=40978 
+#                  1585ns dispaly 2: Counter =    2, RefCounter=  152 ,D=    0, refD=40978 
+#                  1595ns dispaly 1: Counter=    1, D=39780 
+#                  1605ns dispaly 2: Counter =    2, RefCounter=  154 ,D=    0, refD=39780 
+#                  1615ns dispaly 1: Counter=    1, D=38582 
+#                  1625ns dispaly 2: Counter =    2, RefCounter=  156 ,D=    0, refD=38582 
+#                  1635ns dispaly 1: Counter=    1, D=37384 
+#                  1645ns dispaly 2: Counter =    2, RefCounter=  158 ,D=    0, refD=37384 
+#                  1655ns dispaly 1: Counter=    1, D=36186 
+#                  1665ns dispaly 2: Counter =    2, RefCounter=  160 ,D=    0, refD=36186 
+#                  1675ns dispaly 1: Counter=    1, D=34988 
+#                  1685ns dispaly 2: Counter =    2, RefCounter=  162 ,D=    0, refD=34988 
+#                  1695ns dispaly 1: Counter=    1, D=33790 
+#                  1705ns dispaly 2: Counter =    2, RefCounter=  164 ,D=    0, refD=33790 
+#                  1715ns dispaly 1: Counter=    1, D=32592 
+#                  1725ns dispaly 2: Counter =    2, RefCounter=  166 ,D=    0, refD=32592 
+#                  1735ns dispaly 1: Counter=    1, D=31394 
+#                  1745ns dispaly 2: Counter =    2, RefCounter=  168 ,D=    0, refD=31394 
+#                  1755ns dispaly 1: Counter=    1, D=30196 
+#                  1765ns dispaly 2: Counter =    2, RefCounter=  170 ,D=    0, refD=30196 
+#                  1775ns dispaly 1: Counter=    1, D=28998 
+#                  1785ns dispaly 2: Counter =    2, RefCounter=  172 ,D=    0, refD=28998 
+#                  1795ns dispaly 1: Counter=    1, D=27800 
+#                  1805ns dispaly 2: Counter =    2, RefCounter=  174 ,D=    0, refD=27800 
+#                  1815ns dispaly 1: Counter=    1, D=26602 
+#                  1825ns dispaly 2: Counter =    2, RefCounter=  176 ,D=    0, refD=26602 
+#                  1835ns dispaly 1: Counter=    1, D=25404 
+#                  1845ns dispaly 2: Counter =    2, RefCounter=  178 ,D=    0, refD=25404 
+#                  1855ns dispaly 1: Counter=    1, D=24206 
+#                  1865ns dispaly 2: Counter =    2, RefCounter=  180 ,D=    0, refD=24206 
+#                  1875ns dispaly 1: Counter=    1, D=23008 
+#                  1885ns dispaly 2: Counter =    2, RefCounter=  182 ,D=    0, refD=23008 
+#                  1895ns dispaly 1: Counter=    1, D=21810 
+#                  1905ns dispaly 2: Counter =    2, RefCounter=  184 ,D=    0, refD=21810 
+#                  1915ns dispaly 1: Counter=    1, D=20612 
+#                  1925ns dispaly 2: Counter =    2, RefCounter=  186 ,D=    0, refD=20612 
+#                  1935ns dispaly 1: Counter=    1, D=19414 
+#                  1945ns dispaly 2: Counter =    2, RefCounter=  188 ,D=    0, refD=19414 
+#                  1955ns dispaly 1: Counter=    1, D=18216 
+#                  1965ns dispaly 2: Counter =    2, RefCounter=  190 ,D=    0, refD=18216 
+#                  1975ns dispaly 1: Counter=    1, D=17018 
+#                  1985ns dispaly 2: Counter =    2, RefCounter=  192 ,D=    0, refD=17018 
+#                  1995ns dispaly 1: Counter=    1, D=15820 
+#                  2005ns dispaly 2: Counter =    2, RefCounter=  194 ,D=    0, refD=15820 
+#                  2015ns dispaly 1: Counter=    1, D=14622 
+#                  2025ns dispaly 2: Counter =    2, RefCounter=  196 ,D=    0, refD=14622 
+#                  2035ns dispaly 1: Counter=    1, D=13424 
+#                  2045ns dispaly 2: Counter =    2, RefCounter=  198 ,D=    0, refD=13424 
+#                  2055ns dispaly 1: Counter=    1, D=12226 
+#                  2065ns dispaly 2: Counter =    2, RefCounter=  200 ,D=    0, refD=12226 
+#                  2075ns dispaly 1: Counter=    1, D=11028 
+#                  2085ns dispaly 2: Counter =    2, RefCounter=  202 ,D=    0, refD=11028 
+#                  2095ns dispaly 1: Counter=    1, D= 9830 
+#                  2105ns dispaly 2: Counter =    2, RefCounter=  204 ,D=    0, refD= 9830 
+#                  2115ns dispaly 1: Counter=    1, D= 8632 
+#                  2125ns dispaly 2: Counter =    2, RefCounter=  206 ,D=    0, refD= 8632 
+# ** Note: $finish    : new_dv_tb.sv(43)
+#    Time: 2135 ns  Iteration: 0  Instance: /top
+# End time: 13:12:04 on Mar 09,2023, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 2
